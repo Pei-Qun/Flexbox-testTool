@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="flexbox">
+    <meta name="author" content="曾霈宭">
+    
+    <title>Flexbox 測試工具</title>
+    <link rel="shortcut icon" type="image/ico" href="img/favicon.png" />
+    <link rel="stylesheet" href="css/main.min.css">
+</head>
+<body>
+    <div id="app">
+      <div class="css-options">
+        <div class="con">
+          <div class="editor">
+            <div class="title">
+              <h3>container</h3>
+              <button class="reset" @click="reset('container')">⭮ Reset</button>
+            </div>        
+            <div class="option">
+              <span>flex-direction: </span>
+              <select v-model="flexDirection">
+                <option v-for="i in val.fd" :value="i">{{i}}</option>
+              </select>
+            </div>
+            <div class="option">
+              <span>justify-content: </span>
+              <select v-model="justifyContent">
+                <option v-for="i in val.jc" :value="i">{{i}}</option>
+              </select>
+            </div>
+            <div class="option">
+              <span>align-items: </span>
+              <select v-model="alignItems">
+                <option v-for="i in val.ai" :value="i">{{i}}</option>
+              </select>
+            </div>
+            <div class="option">
+              <span>flex-wrap: </span>
+              <select v-model="flexWrap">
+                <option v-for="i in val.fw" :value="i">{{i}}</option>
+              </select>
+            </div>
+            <div class="option">
+              <span>align-content: </span>
+              <select v-model="alignContent">
+                <option v-for="i in val.ac" :value="i">{{i}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="editor">
+            <div class="title">
+              <h3 class="selfchange">box{{selfItem}}</h3>
+              <button class="reset" @click="reset('box')">⭮ Reset</button>
+            </div>
+            
+            <div class="option">
+              order: 
+              <input type="text" v-model="order">
+            </div>
+            <div class="option">
+              align-self: 
+              <select v-model="alignSelf">
+                <option v-for="i in val.as" :value="i">{{i}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="editor quantity">
+            <h3>Box Quantity</h3>
+            <div class="con">
+              <button @click="btnNum=btnNum-1" :disabled="btnNum <= 1">-</button>
+              <span>{{btnNum}}</span>
+              <button @click="btnNum=btnNum+1">+</button></div>
+          </div>
+          <div class="editor box-w">
+            <h3>Box Width</h3>
+            <input type="text" v-model="boxW">
+          </div>
+        </div>
+        <h3>CSS Result</h3>
+        <div class="cssResult">
+          <pre><span>.container</span> {{flexCssVal}}
+<span class="selfchange">.box{{selfItem}}</span> {{boxCssVal}}</pre>
+        </div>
+      </div>
+      <div class="result" :class="{column: columnOrnot,reverse: reverseOrnot1}">
+        <div class="flexboxes" :style="flexCss">
+          <div class="line main" :class="{column: columnOrnot,reverse: reverseOrnot1}"></div>
+          <div class="line vice" :class="{column: columnOrnot,reverse: reverseOrnot2}"></div>
+          <div class="item" 
+                v-for="i in btnNum" @click="boxClick(i)" 
+                :style="[ i==selfItem ? {'order':order,'align-self':alignSelf}:{'background-color':'#3b4393'},{width: boxW}]">
+            box{{i}}
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  <script src="vendors/vue.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "flex",
+  "authors": [
+    "Pei-Qun <nancy016071@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^2.5.17"
+  }
+}
